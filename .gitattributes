@@ -1,0 +1,2 @@
+# Preserve Windows batch line endings when cloning the repository.
+*.bat text eol=crlf

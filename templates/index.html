@@ -1,0 +1,44 @@
+{% extends 'base.html' %} <!-- 复用品牌、导航和资源引用。 -->
+{% block content %} <!-- 定义相册页面主体。 -->
+<main id="album" data-admin="{{ 'true' if admin else 'false' }}"> <!-- 将管理模式传给前端。 -->
+    <section class="hero"> <!-- 相册介绍与动态统计。 -->
+        <div><p class="eyebrow">YOUR MOMENTS, BEAUTIFULLY KEPT</p><h1>{% if admin %}管理你的<em>时光收藏。</em>{% else %}照片浏览器{% endif %}</h1><p class="intro">{{ '批量上传照片，自动整理拍摄时间与地点，让回忆井然有序。' if admin else '沿着时间与地点，重访那些值得珍藏的瞬间。' }}</p></div> <!-- 区分前台与后台的引导文字。 -->
+        <div class="stats"><div><strong id="overall">—</strong><span>珍藏照片</span></div><i></i><div><strong id="places">—</strong><span>记录地点</span></div></div> <!-- 展示实际数据库统计。 -->
+    </section> <!-- 结束介绍区域。 -->
+    {% if admin %} <!-- 仅为管理员显示上传面板。 -->
+    <section class="upload-panel" aria-labelledby="upload-title"> <!-- 支持批量选择与逐张结果展示。 -->
+        <div class="upload-heading"><span class="upload-icon">↥</span><div><h2 id="upload-title">添一段新的回忆</h2><p>一次选择多张照片，自动读取 EXIF 拍摄时间与 GPS。</p></div></div> <!-- 解释上传后的自动管理行为。 -->
+        <label class="button primary" id="choose-label" for="files">＋ 选择照片<input id="files" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden></label> <!-- 使用系统文件选择器一次选择多张照片。 -->
+        <p class="upload-note">JPEG / PNG / WebP · 每张 ≤ 20 MB · 每批 ≤ 50 张。自动地名解析会将 GPS 坐标发送至 Nominatim；离线时可手动补充。</p> <!-- 告知格式限制和联网坐标处理。 -->
+        <div id="upload-status" role="status" aria-live="polite" hidden></div> <!-- 显示批次进度。 -->
+        <progress id="upload-progress" max="100" value="0" hidden></progress> <!-- 显示逐张处理进度。 -->
+        <ul id="upload-results" aria-label="逐张上传结果" hidden></ul> <!-- 保留每张照片的成功或失败说明。 -->
+    </section> <!-- 结束管理上传区域。 -->
+    {% endif %} <!-- 结束管理员专属区域。 -->
+    <form id="filters" class="filters"> <!-- 将查询条件放在照片网格上方。 -->
+        <label class="location-field"><span>拍摄地点</span><input type="search" name="location" placeholder="搜索城市、景点或地址" maxlength="500"></label> <!-- 地点名称按关键词匹配。 -->
+        <label><span>开始日期</span><input type="date" name="start"></label> <!-- 设置包含当天的日期下限。 -->
+        <label><span>结束日期</span><input type="date" name="end"></label> <!-- 设置包含当天的日期上限。 -->
+        <label><span>时间顺序</span><select name="order"><option value="desc">最新拍摄在前</option><option value="asc">最早拍摄在前</option></select></label> <!-- 切换正序或倒序。 -->
+        <button class="button primary" type="submit">查询照片</button><button class="button quiet" type="reset">重置</button> <!-- 显式提交和清除查询条件。 -->
+    </form> <!-- 结束筛选表单。 -->
+    <section class="collection" aria-labelledby="collection-title"> <!-- 显示当前筛选范围内的照片。 -->
+        <div class="section-heading"><h2 id="collection-title">{{ '照片管理' if admin else '时光相册' }} <span id="result-count"></span></h2><span id="order-label">按拍摄时间排列</span></div> <!-- 展示筛选结果数量和排序状态。 -->
+        <div id="gallery" class="gallery" aria-live="polite"></div> <!-- 由脚本安全创建照片卡片。 -->
+        <div id="empty" class="empty" hidden><span class="empty-symbol">▧</span><h3 id="empty-title">相册还是空的</h3><p id="empty-text">从一张照片开始，收藏你的第一个瞬间。</p><a class="button primary" href="/admin">进入后台上传</a></div> <!-- 区分尚未上传和没有匹配结果。 -->
+        <div id="list-error" class="error-panel" role="alert" hidden></div> <!-- 查询失败时避免误显示为空相册。 -->
+        <div class="pagination"><button class="button quiet" id="previous-page" type="button">← 上一页</button><span id="page-info">第 1 / 1 页</span><button class="button quiet" id="next-page" type="button">下一页 →</button></div> <!-- 以十二张为单位翻页。 -->
+    </section> <!-- 结束照片集合。 -->
+</main> <!-- 结束页面主体。 -->
+<dialog id="viewer" aria-labelledby="photo-title"> <!-- 使用原生模态框管理焦点与键盘可达性。 -->
+    <div class="viewer-toolbar"><span id="photo-position"></span><button class="icon-button" id="close-viewer" type="button" aria-label="关闭大图">×</button></div> <!-- 显示照片在查询结果中的位置。 -->
+    <div class="viewer-layout"> <!-- 大图和详情并排，手机上垂直显示。 -->
+        <div class="image-stage"><button class="arrow left" id="previous-photo" type="button" aria-label="上一张照片">‹</button><img id="large-image" alt=""><button class="arrow right" id="next-photo" type="button" aria-label="下一张照片">›</button></div> <!-- 使用纠正方向后的大图并提供前后导航。 -->
+        <aside class="photo-details"><p class="eyebrow">MOMENT DETAILS</p><h2 id="photo-title"></h2><dl><dt>拍摄时间</dt><dd id="photo-time"></dd><dt>拍摄地点</dt><dd id="photo-location"></dd><dt>GPS 坐标</dt><dd id="photo-gps"></dd></dl><a class="button quiet" id="download-original">下载原图 ↓</a> <!-- 展示元数据并提供原始文件下载。 -->
+            {% if admin %} <!-- 为管理员增加拍摄信息维护表单。 -->
+            <form id="edit-form"><h3>补充或修正信息</h3><label>拍摄时间<input type="datetime-local" name="taken_at" step="1"></label><label>拍摄地点<textarea name="location" rows="3" maxlength="500" placeholder="填写城市、景点或地址"></textarea></label><div class="edit-actions"><button class="button primary" type="submit">保存修改</button><button class="button quiet" id="retry-geocode" type="button">解析 GPS</button></div><p class="muted">留空表示未知，原始 GPS 始终保留。</p><button class="text-button danger" id="delete-photo" type="button">删除这张照片</button></form> <!-- 空值可用于清空错误的时间或地点。 -->
+            {% endif %} <!-- 结束管理编辑控件。 -->
+        </aside> <!-- 结束照片详情栏。 -->
+    </div> <!-- 结束模态框主体。 -->
+</dialog> <!-- Escape 键可原生关闭模态框。 -->
+{% endblock %} <!-- 结束相册页面主体。 -->

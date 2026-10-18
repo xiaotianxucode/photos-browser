@@ -1,0 +1,4 @@
+{% extends 'base.html' %} <!-- 复用站点布局。 -->
+{% block content %} <!-- 定义错误提示主体。 -->
+<main class="auth-wrap"><section class="auth-card"><p class="eyebrow">PHOTO JOURNAL</p><h1>暂时无法打开</h1><p>{{ message }}</p><a class="button primary" href="/">返回相册</a></section></main> <!-- 自动转义错误文字并提供恢复入口。 -->
+{% endblock %} <!-- 结束错误页面。 -->

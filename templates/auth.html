@@ -1,0 +1,16 @@
+{% extends 'base.html' %} <!-- 共用站点导航和页脚。 -->
+{% block content %} <!-- 填充管理员认证页面。 -->
+<main class="auth-wrap"> <!-- 将认证表单居中展示。 -->
+    <section class="auth-card"><p class="eyebrow">{{ 'WELCOME TO YOUR JOURNAL' if setup else 'WELCOME BACK' }}</p><h1>{{ '开启你的时光相册' if setup else '回到你的时光相册' }}</h1><p class="intro">{{ '首次使用，请设置管理员账号与密码。' if setup else '登录后上传照片，管理每一份回忆。' }}</p> <!-- 区分首次设置和日常登录。 -->
+        <form id="auth-form" data-mode="{{ 'setup' if setup else 'login' }}"> <!-- 脚本根据模式调用对应接口。 -->
+            <label>管理员账号<input name="username" autocomplete="username" required minlength="2" maxlength="40" placeholder="2–40 个字符"></label> <!-- 使用浏览器账号自动填充。 -->
+            <label>密码<input name="password" type="password" autocomplete="{{ 'new-password' if setup else 'current-password' }}" required minlength="{{ 8 if setup else 1 }}" maxlength="128" placeholder="{{ '至少 8 个字符' if setup else '输入管理员密码' }}"></label> <!-- 创建时要求至少八位密码。 -->
+            {% if setup %} <!-- 首次设置需确认密码。 -->
+            <label>确认密码<input name="confirm" type="password" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="再次输入密码"></label> <!-- 避免输入错误导致无法登录。 -->
+            {% endif %} <!-- 结束首次设置额外字段。 -->
+            <p id="auth-error" class="form-error" role="alert" hidden></p><button class="button primary" type="submit">{{ '创建账号并进入后台 →' if setup else '登录管理后台 →' }}</button> <!-- 显示认证结果和提交按钮。 -->
+        </form> <!-- 结束认证表单。 -->
+        <a class="back-link" href="/">← 返回照片相册</a> <!-- 游客可以直接返回前台浏览。 -->
+    </section> <!-- 结束认证卡片。 -->
+</main> <!-- 结束认证主体。 -->
+{% endblock %} <!-- 结束模板内容。 -->

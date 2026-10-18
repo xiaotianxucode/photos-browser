@@ -1,0 +1,20 @@
+<!doctype html> <!-- 使用现代 HTML 文档标准。 -->
+<html lang="zh-CN"> <!-- 声明页面为简体中文。 -->
+<head> <!-- 定义页面元数据与样式。 -->
+    <meta charset="utf-8"> <!-- 使用 UTF-8 显示中文。 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 适配手机屏幕。 -->
+    <meta name="csrf-token" content="{{ session['csrf'] }}"> <!-- 提供当前会话的请求防伪令牌。 -->
+    <title>拾光 · 照片浏览器</title> <!-- 设置浏览器标签页名称。 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- 加载本地样式，无需联网字体。 -->
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script> <!-- 等待文档解析完成后运行交互脚本。 -->
+</head> <!-- 结束页面头部。 -->
+<body> <!-- 开始可见页面。 -->
+    <header class="site-header"> <!-- 显示品牌与主要入口。 -->
+        <a class="brand" href="/" aria-label="拾光相册首页"><span class="brand-icon">▧</span><span>拾光 <small>PHOTO JOURNAL</small></span></a> <!-- 点击品牌返回公开相册。 -->
+        <nav aria-label="主导航"><a href="/" class="{{ 'active' if not admin else '' }}">照片相册</a><a href="/admin" class="{{ 'active' if admin else '' }}">{{ '管理后台' if session.get('admin') else '管理员入口' }}</a>{% if session.get('admin') %}<button class="text-button" id="logout" type="button">退出登录</button>{% endif %}</nav> <!-- 根据会话显示后台入口与退出按钮。 -->
+    </header> <!-- 结束顶部导航。 -->
+    {% block content %}{% endblock %} <!-- 由具体页面填入主体内容。 -->
+    <footer class="site-footer"><span>拾光 · 把日常，留在照片里。</span><span>地点解析 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors · Nominatim</span></footer> <!-- 显示相册标语与地点数据署名。 -->
+    <div id="toast" role="status" aria-live="polite" hidden></div> <!-- 以无障碍方式显示临时操作提示。 -->
+</body> <!-- 结束可见页面。 -->
+</html> <!-- 结束文档。 -->

@@ -1,0 +1,681 @@
+:root { /* 定义该元素或状态的样式。 */
+    --paper: #f8f7f3; /* 定义主题变量。 */
+    --ink: #253b35; /* 定义主题变量。 */
+    --muted: #7c8780; /* 定义主题变量。 */
+    --accent: #37745f; /* 定义主题变量。 */
+    --line: #e2e6df; /* 定义主题变量。 */
+    --white: #fff; /* 定义主题变量。 */
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif; /* 设置字体与回退字体。 */
+    color: var(--ink); /* 设置文字颜色。 */
+    background: var(--paper); /* 设置背景。 */
+} /* 定义温暖纸色与森林绿视觉主题。 */
+* { /* 定义该元素或状态的样式。 */
+    box-sizing: border-box; /* 设置尺寸计算方式。 */
+} /* 让宽度计算包含内边距与边框。 */
+body { /* 定义该元素或状态的样式。 */
+    margin: 0; /* 设置外边距。 */
+    min-width: 320px; /* 设置最小宽度。 */
+} /* 清除默认外边距并保留手机最小宽度。 */
+a { /* 定义该元素或状态的样式。 */
+    color: inherit; /* 设置文字颜色。 */
+    text-decoration: none; /* 设置文字装饰。 */
+} /* 链接沿用当前文字颜色。 */
+button, input, select, textarea { /* 定义该元素或状态的样式。 */
+    font: inherit; /* 设置字体。 */
+} /* 所有表单控件使用一致字体。 */
+button, .button { /* 定义该元素或状态的样式。 */
+    cursor: pointer; /* 设置鼠标指针。 */
+} /* 操作入口显示手形指针。 */
+button:disabled { /* 定义该元素或状态的样式。 */
+    opacity: .4; /* 设置透明度。 */
+    cursor: default; /* 设置鼠标指针。 */
+} /* 禁止首尾导航时显示禁用状态。 */
+[hidden] { /* 定义该元素或状态的样式。 */
+    display: none !important; /* 设置布局方式。 */
+} /* 保证隐藏状态不被布局样式覆盖。 */
+:focus-visible { /* 定义该元素或状态的样式。 */
+    outline: 3px solid #80b69c; /* 设置焦点轮廓。 */
+    outline-offset: 4px; /* 设置焦点轮廓间距。 */
+} /* 为键盘操作提供可见焦点。 */
+.site-header { /* 定义该元素或状态的样式。 */
+    max-width: 1440px; /* 设置最大宽度。 */
+    padding: 25px 5%; /* 设置内边距。 */
+    margin: auto; /* 设置外边距。 */
+    display: flex; /* 设置布局方式。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    justify-content: space-between; /* 设置主轴对齐。 */
+    border-bottom: 1px solid var(--line); /* 设置边框底部。 */
+    gap: 20px; /* 设置元素间距。 */
+} /* 品牌和导航在页面顶部水平排列。 */
+.brand { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    gap: 12px; /* 设置元素间距。 */
+    font-size: 24px; /* 设置字号。 */
+    font-weight: 700; /* 设置字重。 */
+    letter-spacing: 3px; /* 设置字间距。 */
+} /* 建立相册品牌字标。 */
+.brand-icon { /* 定义该元素或状态的样式。 */
+    display: grid; /* 设置布局方式。 */
+    place-items: center; /* 设置网格内容对齐。 */
+    width: 42px; /* 设置宽度。 */
+    height: 42px; /* 设置高度。 */
+    background: var(--accent); /* 设置背景。 */
+    color: white; /* 设置文字颜色。 */
+    border-radius: 12px; /* 设置圆角。 */
+    font-size: 29px; /* 设置字号。 */
+} /* 以纯字符制作相框标志，无需外部图片。 */
+.brand small { /* 定义该元素或状态的样式。 */
+    display: block; /* 设置布局方式。 */
+    margin-top: 3px; /* 设置外边距顶部。 */
+    font-size: 9px; /* 设置字号。 */
+    letter-spacing: 2px; /* 设置字间距。 */
+    font-weight: 500; /* 设置字重。 */
+    color: var(--muted); /* 设置文字颜色。 */
+} /* 品牌英文副标题弱化显示。 */
+nav { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    gap: 28px; /* 设置元素间距。 */
+    font-size: 14px; /* 设置字号。 */
+} /* 主导航保留均匀间距。 */
+nav a { /* 定义该元素或状态的样式。 */
+    padding: 8px 0; /* 设置内边距。 */
+    color: var(--muted); /* 设置文字颜色。 */
+} /* 非当前入口采用弱化文字。 */
+nav a.active { /* 定义该元素或状态的样式。 */
+    color: var(--accent); /* 设置文字颜色。 */
+    border-bottom: 2px solid var(--accent); /* 设置边框底部。 */
+} /* 当前页面显示绿色下划线。 */
+main { /* 定义该元素或状态的样式。 */
+    max-width: 1440px; /* 设置最大宽度。 */
+    padding: 0 5%; /* 设置内边距。 */
+    margin: auto; /* 设置外边距。 */
+} /* 页面内容与顶栏对齐。 */
+.hero { /* 定义该元素或状态的样式。 */
+    padding: 58px 0 42px; /* 设置内边距。 */
+    display: flex; /* 设置布局方式。 */
+    justify-content: space-between; /* 设置主轴对齐。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    gap: 30px; /* 设置元素间距。 */
+} /* 首屏介绍和数据统计并排展示。 */
+.eyebrow { /* 定义该元素或状态的样式。 */
+    font-size: 10px; /* 设置字号。 */
+    color: var(--accent); /* 设置文字颜色。 */
+    font-weight: 700; /* 设置字重。 */
+    letter-spacing: 2px; /* 设置字间距。 */
+    margin: 0 0 18px; /* 设置外边距。 */
+} /* 英文眉题建立清晰的视觉层级。 */
+h1 { /* 定义该元素或状态的样式。 */
+    font-size: clamp(28px, 3vw, 42px); /* 设置字号。 */
+    line-height: 1.45; /* 设置行高。 */
+    font-weight: 500; /* 设置字重。 */
+    margin: 0 0 14px; /* 设置外边距。 */
+    letter-spacing: -1px; /* 设置字间距。 */
+} /* 大标题根据视口自适应。 */
+h1 em { /* 定义该元素或状态的样式。 */
+    font-style: normal; /* 设置字体样式。 */
+    color: var(--accent); /* 设置文字颜色。 */
+} /* 使用绿色强调相册核心文案。 */
+.intro { /* 定义该元素或状态的样式。 */
+    font-size: 14px; /* 设置字号。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    line-height: 1.9; /* 设置行高。 */
+    margin: 0; /* 设置外边距。 */
+} /* 次要说明保持舒适行距。 */
+.stats { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    gap: 32px; /* 设置元素间距。 */
+    padding-right: 12px; /* 设置内边距右侧。 */
+} /* 将照片数和地点数并列。 */
+.stats div { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    flex-direction: column; /* 设置排列方向。 */
+    gap: 8px; /* 设置元素间距。 */
+} /* 统计数值和说明垂直排列。 */
+.stats strong { /* 定义该元素或状态的样式。 */
+    font-family: Georgia, serif; /* 设置字体与回退字体。 */
+    font-size: 38px; /* 设置字号。 */
+    font-weight: 400; /* 设置字重。 */
+} /* 数据使用衬线数字形成相册感。 */
+.stats span { /* 定义该元素或状态的样式。 */
+    font-size: 11px; /* 设置字号。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    letter-spacing: 1px; /* 设置字间距。 */
+} /* 弱化统计说明。 */
+.stats i { /* 定义该元素或状态的样式。 */
+    height: 45px; /* 设置高度。 */
+    width: 1px; /* 设置宽度。 */
+    background: var(--line); /* 设置背景。 */
+} /* 统计之间使用细线分隔。 */
+.filters { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    align-items: end; /* 设置交叉轴对齐。 */
+    gap: 14px; /* 设置元素间距。 */
+    background: white; /* 设置背景。 */
+    padding: 23px; /* 设置内边距。 */
+    border: 1px solid var(--line); /* 设置边框。 */
+    border-radius: 12px; /* 设置圆角。 */
+    box-shadow: 0 4px 16px #253b3503; /* 设置阴影。 */
+} /* 查询条件位于照片上方独立面板。 */
+label { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    flex-direction: column; /* 设置排列方向。 */
+    gap: 9px; /* 设置元素间距。 */
+    font-size: 12px; /* 设置字号。 */
+    font-weight: 600; /* 设置字重。 */
+} /* 表单标签与控件纵向排列。 */
+input, select, textarea { /* 定义该元素或状态的样式。 */
+    width: 100%; /* 设置宽度。 */
+    border: 1px solid var(--line); /* 设置边框。 */
+    border-radius: 7px; /* 设置圆角。 */
+    background: #fff; /* 设置背景。 */
+    color: var(--ink); /* 设置文字颜色。 */
+    padding: 11px 12px; /* 设置内边距。 */
+    min-height: 42px; /* 设置最小高度。 */
+    font-size: 13px; /* 设置字号。 */
+    font-weight: 400; /* 设置字重。 */
+} /* 统一输入控件的边框与高度。 */
+input::placeholder, textarea::placeholder { /* 定义该元素或状态的样式。 */
+    color: #a2aaa4; /* 设置文字颜色。 */
+} /* 提示文本弱化但保留可读性。 */
+input:focus, select:focus, textarea:focus { /* 定义该元素或状态的样式。 */
+    border-color: var(--accent); /* 设置边框颜色。 */
+} /* 聚焦时突出当前查询条件。 */
+.location-field { /* 定义该元素或状态的样式。 */
+    flex: 1; /* 设置弹性伸缩。 */
+    min-width: 160px; /* 设置最小宽度。 */
+} /* 让地点检索占据可用空间。 */
+.button { /* 定义该元素或状态的样式。 */
+    display: inline-flex; /* 设置布局方式。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    justify-content: center; /* 设置主轴对齐。 */
+    gap: 6px; /* 设置元素间距。 */
+    min-height: 42px; /* 设置最小高度。 */
+    padding: 10px 18px; /* 设置内边距。 */
+    border-radius: 7px; /* 设置圆角。 */
+    border: 1px solid transparent; /* 设置边框。 */
+    font-size: 13px; /* 设置字号。 */
+    font-weight: 500; /* 设置字重。 */
+    white-space: nowrap; /* 设置文字换行。 */
+    transition: background .15s; /* 设置交互动画。 */
+} /* 所有主要操作使用统一按钮。 */
+.primary { /* 定义该元素或状态的样式。 */
+    background: var(--accent); /* 设置背景。 */
+    color: white; /* 设置文字颜色。 */
+} /* 用绿色标记主要操作。 */
+.primary:hover { /* 定义该元素或状态的样式。 */
+    background: #295e4b; /* 设置背景。 */
+} /* 鼠标悬浮时增加按钮对比。 */
+.quiet { /* 定义该元素或状态的样式。 */
+    background: white; /* 设置背景。 */
+    border-color: var(--line); /* 设置边框颜色。 */
+    color: var(--ink); /* 设置文字颜色。 */
+} /* 次要按钮使用白底边框。 */
+.quiet:hover { /* 定义该元素或状态的样式。 */
+    background: #f0f4ee; /* 设置背景。 */
+} /* 为次要操作提供悬浮反馈。 */
+.collection { /* 定义该元素或状态的样式。 */
+    padding: 35px 0 20px; /* 设置内边距。 */
+} /* 将照片网格与筛选面板分开。 */
+.section-heading { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    justify-content: space-between; /* 设置主轴对齐。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    margin-bottom: 22px; /* 设置外边距底部。 */
+    gap: 15px; /* 设置元素间距。 */
+} /* 左侧标题和右侧排序提示对齐。 */
+h2 { /* 定义该元素或状态的样式。 */
+    font-size: 18px; /* 设置字号。 */
+    font-weight: 600; /* 设置字重。 */
+    margin: 0; /* 设置外边距。 */
+} /* 区域标题使用适中字号。 */
+#result-count { /* 定义该元素或状态的样式。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-weight: 400; /* 设置字重。 */
+    font-size: 12px; /* 设置字号。 */
+    margin-left: 8px; /* 设置外边距左侧。 */
+} /* 在相册标题旁显示匹配数量。 */
+.section-heading > span { /* 定义该元素或状态的样式。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-size: 12px; /* 设置字号。 */
+} /* 弱化排序提示。 */
+.gallery { /* 定义该元素或状态的样式。 */
+    display: grid; /* 设置布局方式。 */
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 设置网格列。 */
+    gap: 24px; /* 设置元素间距。 */
+} /* 桌面默认每行四张照片。 */
+.photo-card { /* 定义该元素或状态的样式。 */
+    border: 1px solid var(--line); /* 设置边框。 */
+    border-radius: 10px; /* 设置圆角。 */
+    overflow: hidden; /* 设置溢出行为。 */
+    background: white; /* 设置背景。 */
+    transition: transform .18s, box-shadow .18s; /* 设置交互动画。 */
+    padding: 0; /* 设置内边距。 */
+    text-align: left; /* 设置文字对齐。 */
+    width: 100%; /* 设置宽度。 */
+    color: var(--ink); /* 设置文字颜色。 */
+} /* 将完整卡片设为可键盘激活的按钮。 */
+.photo-card:hover { /* 定义该元素或状态的样式。 */
+    transform: translateY(-4px); /* 设置位移变换。 */
+    box-shadow: 0 12px 28px #253b3510; /* 设置阴影。 */
+} /* 悬浮时让照片卡片轻微抬升。 */
+.photo-card img { /* 定义该元素或状态的样式。 */
+    width: 100%; /* 设置宽度。 */
+    aspect-ratio: 4 / 3; /* 设置宽高比。 */
+    object-fit: cover; /* 设置图片缩放。 */
+    display: block; /* 设置布局方式。 */
+    background: #e7ebe5; /* 设置背景。 */
+} /* 缩略图保持统一网格尺寸。 */
+.card-info { /* 定义该元素或状态的样式。 */
+    padding: 15px 16px 17px; /* 设置内边距。 */
+} /* 图片下方留出信息区域。 */
+.card-title { /* 定义该元素或状态的样式。 */
+    font-size: 14px; /* 设置字号。 */
+    margin: 0 0 10px; /* 设置外边距。 */
+    overflow: hidden; /* 设置溢出行为。 */
+    white-space: nowrap; /* 设置文字换行。 */
+    text-overflow: ellipsis; /* 设置省略号行为。 */
+} /* 长文件名显示省略号。 */
+.card-meta { /* 定义该元素或状态的样式。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-size: 11px; /* 设置字号。 */
+    line-height: 1.8; /* 设置行高。 */
+    margin: 0; /* 设置外边距。 */
+    overflow: hidden; /* 设置溢出行为。 */
+    white-space: nowrap; /* 设置文字换行。 */
+    text-overflow: ellipsis; /* 设置省略号行为。 */
+} /* 时间和地点采用轻量说明样式。 */
+.empty { /* 定义该元素或状态的样式。 */
+    text-align: center; /* 设置文字对齐。 */
+    padding: 65px 20px; /* 设置内边距。 */
+    background: #f0f3ed; /* 设置背景。 */
+    border: 1px dashed #ced8ce; /* 设置边框。 */
+    border-radius: 12px; /* 设置圆角。 */
+} /* 空相册使用友好的引导面板。 */
+.empty-symbol { /* 定义该元素或状态的样式。 */
+    font-size: 46px; /* 设置字号。 */
+    color: #95ad9d; /* 设置文字颜色。 */
+} /* 空状态使用相框符号。 */
+.empty h3 { /* 定义该元素或状态的样式。 */
+    font-size: 19px; /* 设置字号。 */
+    font-weight: 500; /* 设置字重。 */
+} /* 空状态标题保持克制。 */
+.empty p { /* 定义该元素或状态的样式。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-size: 13px; /* 设置字号。 */
+    margin-bottom: 25px; /* 设置外边距底部。 */
+} /* 对当前空状态作简要解释。 */
+.pagination { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    justify-content: center; /* 设置主轴对齐。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    gap: 22px; /* 设置元素间距。 */
+    margin: 34px 0; /* 设置外边距。 */
+} /* 分页按钮居中排列。 */
+#page-info { /* 定义该元素或状态的样式。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-size: 12px; /* 设置字号。 */
+} /* 页码使用次要文字颜色。 */
+.site-footer { /* 定义该元素或状态的样式。 */
+    max-width: 1440px; /* 设置最大宽度。 */
+    margin: 30px auto 0; /* 设置外边距。 */
+    padding: 25px 5%; /* 设置内边距。 */
+    border-top: 1px solid var(--line); /* 设置边框顶部。 */
+    display: flex; /* 设置布局方式。 */
+    justify-content: space-between; /* 设置主轴对齐。 */
+    gap: 16px; /* 设置元素间距。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-size: 11px; /* 设置字号。 */
+    line-height: 1.8; /* 设置行高。 */
+} /* 页脚显示相册标语和数据来源。 */
+.site-footer a { /* 定义该元素或状态的样式。 */
+    text-decoration: underline; /* 设置文字装饰。 */
+} /* 明确标记地点来源链接。 */
+.upload-panel { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    flex-wrap: wrap; /* 设置换行行为。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    justify-content: space-between; /* 设置主轴对齐。 */
+    gap: 20px; /* 设置元素间距。 */
+    padding: 26px; /* 设置内边距。 */
+    margin-bottom: 25px; /* 设置外边距底部。 */
+    background: #edf3ed; /* 设置背景。 */
+    border: 1px dashed #bdcfc1; /* 设置边框。 */
+    border-radius: 12px; /* 设置圆角。 */
+} /* 后台上传面板与查询区域分开。 */
+.upload-heading { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    gap: 17px; /* 设置元素间距。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+} /* 上传图标与说明并列。 */
+.upload-heading h2 { /* 定义该元素或状态的样式。 */
+    font-size: 17px; /* 设置字号。 */
+} /* 上传标题略小于页面标题。 */
+.upload-heading p { /* 定义该元素或状态的样式。 */
+    margin: 7px 0 0; /* 设置外边距。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-size: 12px; /* 设置字号。 */
+    line-height: 1.8; /* 设置行高。 */
+} /* 解释自动提取信息的能力。 */
+.upload-icon { /* 定义该元素或状态的样式。 */
+    background: white; /* 设置背景。 */
+    color: var(--accent); /* 设置文字颜色。 */
+    border-radius: 12px; /* 设置圆角。 */
+    font-size: 30px; /* 设置字号。 */
+    padding: 3px 16px; /* 设置内边距。 */
+} /* 采用向上箭头提示上传。 */
+.upload-note { /* 定义该元素或状态的样式。 */
+    flex-basis: 100%; /* 设置弹性基准宽度。 */
+    font-size: 11px; /* 设置字号。 */
+    color: #77877d; /* 设置文字颜色。 */
+    margin: 0; /* 设置外边距。 */
+    line-height: 1.9; /* 设置行高。 */
+} /* 上传约束与网络说明独占一行。 */
+#upload-status { /* 定义该元素或状态的样式。 */
+    font-size: 13px; /* 设置字号。 */
+    flex-basis: 100%; /* 设置弹性基准宽度。 */
+} /* 批次进度单独显示。 */
+progress { /* 定义该元素或状态的样式。 */
+    width: 100%; /* 设置宽度。 */
+    height: 8px; /* 设置高度。 */
+    accent-color: var(--accent); /* 设置控件主题色。 */
+} /* 进度条使用站点主题色。 */
+#upload-results { /* 定义该元素或状态的样式。 */
+    width: 100%; /* 设置宽度。 */
+    max-height: 190px; /* 设置最大高度。 */
+    overflow: auto; /* 设置溢出行为。 */
+    margin: 0; /* 设置外边距。 */
+    padding-left: 20px; /* 设置内边距左侧。 */
+    font-size: 12px; /* 设置字号。 */
+    line-height: 2; /* 设置行高。 */
+    overflow-wrap: anywhere; /* 设置长文字换行。 */
+} /* 大批次上传结果可滚动阅读。 */
+.failure, .form-error, .danger { /* 定义该元素或状态的样式。 */
+    color: #b64738; /* 设置文字颜色。 */
+} /* 失败操作使用可辨认的红色。 */
+.success { /* 定义该元素或状态的样式。 */
+    color: var(--accent); /* 设置文字颜色。 */
+} /* 上传成功使用主题绿色。 */
+.text-button { /* 定义该元素或状态的样式。 */
+    border: 0; /* 设置边框。 */
+    background: transparent; /* 设置背景。 */
+    font-size: 12px; /* 设置字号。 */
+    padding: 5px 0; /* 设置内边距。 */
+    color: var(--muted); /* 设置文字颜色。 */
+} /* 退出与删除采用低强调文本按钮。 */
+.text-button.danger { /* 定义该元素或状态的样式。 */
+    color: #b64738; /* 设置文字颜色。 */
+} /* 保留删除操作的危险颜色。 */
+.auth-wrap { /* 定义该元素或状态的样式。 */
+    min-height: 72vh; /* 设置最小高度。 */
+    display: grid; /* 设置布局方式。 */
+    place-items: center; /* 设置网格内容对齐。 */
+    padding-top: 45px; /* 设置内边距顶部。 */
+    padding-bottom: 45px; /* 设置内边距底部。 */
+} /* 登录页在视口中央展示表单。 */
+.auth-card { /* 定义该元素或状态的样式。 */
+    width: min(100%, 460px); /* 设置宽度。 */
+    padding: 38px; /* 设置内边距。 */
+    border: 1px solid var(--line); /* 设置边框。 */
+    border-radius: 15px; /* 设置圆角。 */
+    background: white; /* 设置背景。 */
+} /* 管理员表单使用白色卡片。 */
+.auth-card h1 { /* 定义该元素或状态的样式。 */
+    font-size: 27px; /* 设置字号。 */
+} /* 认证标题匹配窄卡片宽度。 */
+.auth-card form { /* 定义该元素或状态的样式。 */
+    display: grid; /* 设置布局方式。 */
+    gap: 20px; /* 设置元素间距。 */
+    margin-top: 28px; /* 设置外边距顶部。 */
+} /* 纵向排列账号、密码和提交操作。 */
+.back-link { /* 定义该元素或状态的样式。 */
+    display: inline-block; /* 设置布局方式。 */
+    font-size: 12px; /* 设置字号。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    margin-top: 25px; /* 设置外边距顶部。 */
+} /* 提供返回前台的次要链接。 */
+.form-error { /* 定义该元素或状态的样式。 */
+    font-size: 13px; /* 设置字号。 */
+    margin: 0; /* 设置外边距。 */
+} /* 表单错误紧邻提交按钮。 */
+dialog { /* 定义该元素或状态的样式。 */
+    border: 0; /* 设置边框。 */
+    border-radius: 14px; /* 设置圆角。 */
+    padding: 0; /* 设置内边距。 */
+    width: min(1180px, 94vw); /* 设置宽度。 */
+    max-height: 92vh; /* 设置最大高度。 */
+    color: var(--ink); /* 设置文字颜色。 */
+    background: #fff; /* 设置背景。 */
+} /* 大图使用适合桌面和手机的模态窗口。 */
+dialog::backdrop { /* 定义该元素或状态的样式。 */
+    background: #142820cf; /* 设置背景。 */
+    backdrop-filter: blur(5px); /* 设置背景模糊。 */
+} /* 压暗背景以突出当前照片。 */
+.viewer-toolbar { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    justify-content: space-between; /* 设置主轴对齐。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    padding: 10px 18px; /* 设置内边距。 */
+    border-bottom: 1px solid var(--line); /* 设置边框底部。 */
+    font-size: 12px; /* 设置字号。 */
+    color: var(--muted); /* 设置文字颜色。 */
+} /* 大图顶部显示当前位置和关闭按钮。 */
+.icon-button { /* 定义该元素或状态的样式。 */
+    border: 0; /* 设置边框。 */
+    background: transparent; /* 设置背景。 */
+    font-size: 28px; /* 设置字号。 */
+    color: var(--ink); /* 设置文字颜色。 */
+    padding: 0 6px; /* 设置内边距。 */
+} /* 关闭按钮提供足够点击范围。 */
+.viewer-layout { /* 定义该元素或状态的样式。 */
+    display: grid; /* 设置布局方式。 */
+    grid-template-columns: minmax(0, 1fr) 310px; /* 设置网格列。 */
+} /* 大图与信息侧栏分列。 */
+.image-stage { /* 定义该元素或状态的样式。 */
+    background: #17221e; /* 设置背景。 */
+    position: relative; /* 设置定位方式。 */
+    display: flex; /* 设置布局方式。 */
+    align-items: center; /* 设置交叉轴对齐。 */
+    justify-content: center; /* 设置主轴对齐。 */
+    min-height: 440px; /* 设置最小高度。 */
+} /* 深色背景适配不同方向的照片。 */
+.image-stage img { /* 定义该元素或状态的样式。 */
+    max-width: 100%; /* 设置最大宽度。 */
+    max-height: 76vh; /* 设置最大高度。 */
+    object-fit: contain; /* 设置图片缩放。 */
+} /* 完整显示照片而不裁切。 */
+.arrow { /* 定义该元素或状态的样式。 */
+    position: absolute; /* 设置定位方式。 */
+    top: 46%; /* 设置顶部距离。 */
+    border: 1px solid #ffffff40; /* 设置边框。 */
+    background: #182b2399; /* 设置背景。 */
+    color: white; /* 设置文字颜色。 */
+    border-radius: 50%; /* 设置圆角。 */
+    width: 40px; /* 设置宽度。 */
+    height: 40px; /* 设置高度。 */
+    font-size: 30px; /* 设置字号。 */
+    line-height: 1; /* 设置行高。 */
+    z-index: 1; /* 设置叠放层级。 */
+} /* 前后导航覆盖在照片两侧。 */
+.arrow.left { /* 定义该元素或状态的样式。 */
+    left: 12px; /* 设置左侧距离。 */
+} /* 上一张按钮靠左。 */
+.arrow.right { /* 定义该元素或状态的样式。 */
+    right: 12px; /* 设置右侧距离。 */
+} /* 下一张按钮靠右。 */
+.photo-details { /* 定义该元素或状态的样式。 */
+    padding: 26px; /* 设置内边距。 */
+    overflow-wrap: anywhere; /* 设置长文字换行。 */
+} /* 详情侧栏允许长文件名和地点换行。 */
+.photo-details .eyebrow { /* 定义该元素或状态的样式。 */
+    font-size: 9px; /* 设置字号。 */
+} /* 侧栏眉题适应较窄区域。 */
+dl { /* 定义该元素或状态的样式。 */
+    margin: 26px 0; /* 设置外边距。 */
+} /* 元数据组与标题保持间距。 */
+dt { /* 定义该元素或状态的样式。 */
+    font-size: 11px; /* 设置字号。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    margin-top: 19px; /* 设置外边距顶部。 */
+} /* 时间、地点和坐标的字段名弱化。 */
+dd { /* 定义该元素或状态的样式。 */
+    margin: 8px 0 0; /* 设置外边距。 */
+    line-height: 1.8; /* 设置行高。 */
+    font-size: 13px; /* 设置字号。 */
+} /* 元数据数值保持可读行距。 */
+#edit-form { /* 定义该元素或状态的样式。 */
+    display: grid; /* 设置布局方式。 */
+    gap: 15px; /* 设置元素间距。 */
+    margin-top: 28px; /* 设置外边距顶部。 */
+    border-top: 1px solid var(--line); /* 设置边框顶部。 */
+    padding-top: 20px; /* 设置内边距顶部。 */
+} /* 后台编辑区与只读信息分隔。 */
+#edit-form h3 { /* 定义该元素或状态的样式。 */
+    margin: 0; /* 设置外边距。 */
+    font-size: 14px; /* 设置字号。 */
+} /* 编辑区标题简洁显示。 */
+.edit-actions { /* 定义该元素或状态的样式。 */
+    display: flex; /* 设置布局方式。 */
+    flex-wrap: wrap; /* 设置换行行为。 */
+    gap: 8px; /* 设置元素间距。 */
+} /* 保存和解析地点按钮可自动换行。 */
+.muted { /* 定义该元素或状态的样式。 */
+    color: var(--muted); /* 设置文字颜色。 */
+    font-size: 11px; /* 设置字号。 */
+    line-height: 1.7; /* 设置行高。 */
+    margin: 0; /* 设置外边距。 */
+} /* 展示字段维护提示。 */
+.error-panel { /* 定义该元素或状态的样式。 */
+    background: #fff1ec; /* 设置背景。 */
+    padding: 25px; /* 设置内边距。 */
+    border-radius: 10px; /* 设置圆角。 */
+    color: #a94432; /* 设置文字颜色。 */
+    font-size: 14px; /* 设置字号。 */
+} /* 查询失败使用独立错误提示。 */
+#toast { /* 定义该元素或状态的样式。 */
+    position: fixed; /* 设置定位方式。 */
+    bottom: 25px; /* 设置底部距离。 */
+    left: 50%; /* 设置左侧距离。 */
+    transform: translateX(-50%); /* 设置位移变换。 */
+    background: #253b35; /* 设置背景。 */
+    color: white; /* 设置文字颜色。 */
+    border-radius: 9px; /* 设置圆角。 */
+    padding: 14px 24px; /* 设置内边距。 */
+    font-size: 13px; /* 设置字号。 */
+    z-index: 20; /* 设置叠放层级。 */
+    width: max-content; /* 设置宽度。 */
+    max-width: 90vw; /* 设置最大宽度。 */
+    box-shadow: 0 5px 30px #0002; /* 设置阴影。 */
+} /* 普通操作结果以底部提示展示。 */
+@media (max-width: 1100px) { /* 仅在指定屏幕宽度应用以下布局。 */
+    .filters { /* 定义该元素或状态的样式。 */
+        flex-wrap: wrap; /* 设置换行行为。 */
+    }
+    .location-field { /* 定义该元素或状态的样式。 */
+        flex-basis: 35%; /* 设置弹性基准宽度。 */
+    }
+    .gallery { /* 定义该元素或状态的样式。 */
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 设置网格列。 */
+        gap: 18px; /* 设置元素间距。 */
+    }
+} /* 平板宽屏将照片调整为三列并允许筛选换行。 */
+@media (max-width: 760px) { /* 仅在指定屏幕宽度应用以下布局。 */
+    .hero { /* 定义该元素或状态的样式。 */
+        padding-top: 35px; /* 设置内边距顶部。 */
+        align-items: start; /* 设置交叉轴对齐。 */
+    }
+    .stats { /* 定义该元素或状态的样式。 */
+        gap: 18px; /* 设置元素间距。 */
+    }
+    .stats strong { /* 定义该元素或状态的样式。 */
+        font-size: 29px; /* 设置字号。 */
+    }
+    .viewer-layout { /* 定义该元素或状态的样式。 */
+        grid-template-columns: 1fr; /* 设置网格列。 */
+    }
+    .image-stage { /* 定义该元素或状态的样式。 */
+        min-height: 260px; /* 设置最小高度。 */
+    }
+    .image-stage img { /* 定义该元素或状态的样式。 */
+        max-height: 52vh; /* 设置最大高度。 */
+    }
+    .site-footer { /* 定义该元素或状态的样式。 */
+        flex-direction: column; /* 设置排列方向。 */
+    }
+    .gallery { /* 定义该元素或状态的样式。 */
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 设置网格列。 */
+        gap: 14px; /* 设置元素间距。 */
+    }
+} /* 窄屏将详情改为上下布局并显示两列照片。 */
+@media (max-width: 500px) { /* 仅在指定屏幕宽度应用以下布局。 */
+    .site-header { /* 定义该元素或状态的样式。 */
+        padding: 20px 5%; /* 设置内边距。 */
+        gap: 10px; /* 设置元素间距。 */
+    }
+    nav { /* 定义该元素或状态的样式。 */
+        gap: 13px; /* 设置元素间距。 */
+        font-size: 12px; /* 设置字号。 */
+    }
+    .brand { /* 定义该元素或状态的样式。 */
+        font-size: 21px; /* 设置字号。 */
+        gap: 8px; /* 设置元素间距。 */
+    }
+    .brand-icon { /* 定义该元素或状态的样式。 */
+        width: 34px; /* 设置宽度。 */
+        height: 36px; /* 设置高度。 */
+    }
+    .brand small { /* 定义该元素或状态的样式。 */
+        font-size: 7px; /* 设置字号。 */
+    }
+    .hero { /* 定义该元素或状态的样式。 */
+        flex-direction: column; /* 设置排列方向。 */
+        gap: 24px; /* 设置元素间距。 */
+    }
+    .stats { /* 定义该元素或状态的样式。 */
+        gap: 26px; /* 设置元素间距。 */
+    }
+    .stats div { /* 定义该元素或状态的样式。 */
+        flex-direction: row; /* 设置排列方向。 */
+        align-items: baseline; /* 设置交叉轴对齐。 */
+    }
+    .stats i { /* 定义该元素或状态的样式。 */
+        height: 23px; /* 设置高度。 */
+    }
+    .filters { /* 定义该元素或状态的样式。 */
+        padding: 18px; /* 设置内边距。 */
+        gap: 14px 10px; /* 设置元素间距。 */
+    }
+    .filters label { /* 定义该元素或状态的样式。 */
+        flex: 1 1 calc(50% - 10px); /* 设置弹性伸缩。 */
+        min-width: 0; /* 设置最小宽度。 */
+    }
+    .filters .location-field { /* 定义该元素或状态的样式。 */
+        flex-basis: 100%; /* 设置弹性基准宽度。 */
+    }
+    .gallery { /* 定义该元素或状态的样式。 */
+        gap: 12px; /* 设置元素间距。 */
+    }
+    .card-info { /* 定义该元素或状态的样式。 */
+        padding: 12px; /* 设置内边距。 */
+    }
+    .card-title { /* 定义该元素或状态的样式。 */
+        font-size: 12px; /* 设置字号。 */
+    }
+    .card-meta { /* 定义该元素或状态的样式。 */
+        font-size: 10px; /* 设置字号。 */
+    }
+    .section-heading > span { /* 定义该元素或状态的样式。 */
+        font-size: 10px; /* 设置字号。 */
+    }
+    .upload-panel { /* 定义该元素或状态的样式。 */
+        padding: 20px; /* 设置内边距。 */
+    }
+    .auth-card { /* 定义该元素或状态的样式。 */
+        padding: 28px; /* 设置内边距。 */
+    }
+    .pagination { /* 定义该元素或状态的样式。 */
+        gap: 12px; /* 设置元素间距。 */
+    }
+} /* 手机端确保筛选和上传控件不横向溢出。 */
